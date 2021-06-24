@@ -15,6 +15,7 @@ public class BuilderClass extends GameClass {
 
         super.setItem(3, abilities[0].getAbilityItem());
         super.setItem(4, ItemFactory.createItem(Material.GOLDEN_APPLE));
+        super.setItem(5, ItemFactory.createItem(Material.COOKED_BEEF, 64));
 
         super.setItem(6, ItemFactory.createItem(Material.OAK_PLANKS, 64));
         super.setItem(7, ItemFactory.createItem(Material.OAK_STAIRS, 64));

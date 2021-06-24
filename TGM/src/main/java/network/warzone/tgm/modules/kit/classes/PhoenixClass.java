@@ -14,6 +14,7 @@ public class PhoenixClass extends GameClass {
         super.setItem(2, abilities[0].getAbilityItem());
 
         super.setItem(3, ItemFactory.createItem(Material.GOLDEN_APPLE));
+        super.setItem(4, ItemFactory.createItem(Material.COOKED_BEEF, 64));
 
         super.setItem(5, ItemFactory.createItem(Material.OAK_PLANKS, 64));
         super.setItem(6, ItemFactory.createItem(Material.WOODEN_AXE));

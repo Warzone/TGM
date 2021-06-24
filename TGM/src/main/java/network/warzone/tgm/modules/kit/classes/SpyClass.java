@@ -20,6 +20,7 @@ public class SpyClass extends GameClass {
         super.setItem(3, abilities[0].getAbilityItem());
         super.setItem(5, ItemFactory.createItem(Material.OAK_PLANKS, 64));
         super.setItem(6, ItemFactory.createItem(Material.WOODEN_AXE));
+        super.setItem(7, ItemFactory.createItem(Material.COOKED_BEEF, 64));
 
         super.setItem(8, ItemFactory.createItem(Material.ARROW, 64));
 

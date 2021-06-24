@@ -138,7 +138,7 @@ public class DeathModule extends MatchModule implements Listener {
                     if (projectile.getShooter() instanceof Player) damager = (Player) projectile.getShooter();
                 }
 
-                if (damager != null && teamManagerModule.getTeam(damager).isSpectator()) return;
+                if (damager != null && (damager == p || teamManagerModule.getTeam(damager).isSpectator())) return;
 
                 deathInfo.killer = damager;
                 deathInfo.item = determineItemFromDamager(byEntityEvent.getDamager(), damager);

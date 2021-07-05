@@ -39,7 +39,7 @@ public class Monument implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockBreak(BlockBreakEvent event) {
-        if (region.contains(event.getBlock().getLocation())) {
+        if (region.contains(event.getBlock())) {
             if (materials == null || materials.contains(event.getBlock().getType())) {
                 if (!canDamage(event.getPlayer())) {
                     event.getPlayer().sendMessage(ChatColor.RED + "You cannot damage a monument you own.");
@@ -54,7 +54,7 @@ public class Monument implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockBreakHighest(BlockBreakEvent event) {
-        if (region.contains(event.getBlock().getLocation())) {
+        if (region.contains(event.getBlock())) {
             if (materials == null || materials.contains(event.getBlock().getType())) {
                 if (canDamage(event.getPlayer())) {
                     Match match = this.match.get();
@@ -83,7 +83,7 @@ public class Monument implements Listener {
 
     @EventHandler
     public void onBlockBurn(BlockBurnEvent event) {
-        if (region.contains(event.getBlock().getLocation())) {
+        if (region.contains(event.getBlock())) {
             if (materials == null || materials.contains(event.getBlock().getType())) {
                 event.setCancelled(true);
             }
@@ -92,20 +92,20 @@ public class Monument implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onBlockIgniteEvent(BlockIgniteEvent event) {
-        if (region.contains(event.getBlock().getLocation())) {
+        if (region.contains(event.getBlock())) {
             event.setCancelled(true);
         }
     }
     @EventHandler(priority = EventPriority.HIGH)
     public void onPistonRetract(BlockPistonRetractEvent event) {
-        if (region.contains(event.getBlock().getLocation())) {
+        if (region.contains(event.getBlock())) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPistonExtend(BlockPistonExtendEvent event) {
-        if (region.contains(event.getBlock().getLocation())) {
+        if (region.contains(event.getBlock())) {
             event.setCancelled(true);
         }
     }

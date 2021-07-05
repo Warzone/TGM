@@ -84,7 +84,7 @@ public class HemisphereRegion implements Region {
         List<Block> results = new ArrayList<>();
         CuboidRegion bound = new CuboidRegion(this.min, this.max);
         for (Block block : bound.getBlocks()) {
-            if (contains(new Location(focalPoint.getWorld(), block.getX(), block.getY(), block.getZ()))) results.add(block);
+            if (contains(block)) results.add(block);
         }
         return results;
     }

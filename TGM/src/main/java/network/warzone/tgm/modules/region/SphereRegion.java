@@ -64,7 +64,7 @@ public class SphereRegion implements Region {
         List<Block> results = new ArrayList<>();
         CuboidRegion bound = new CuboidRegion(getMin(), getMax());
         for (Block block : bound.getBlocks()) {
-            if (contains(new Location(TGM.get().getMatchManager().getMatch().getWorld(), block.getX(), block.getY(), block.getZ()))) results.add(block);
+            if (contains(block)) results.add(block);
         }
         return results;
     }

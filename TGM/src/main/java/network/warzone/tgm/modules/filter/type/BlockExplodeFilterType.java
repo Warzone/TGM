@@ -35,7 +35,7 @@ public class BlockExplodeFilterType implements FilterType, Listener {
         for (Block block : event.blockList()) {
             for (Region region : regions) {
                 FilterResult filterResult = evaluator.evaluate();
-                if (filterResult == FilterResult.DENY && contains(region, block.getLocation()) &&
+                if (filterResult == FilterResult.DENY && contains(region, block) &&
                         !cancelledBlocks.contains(block)) {
                     cancelledBlocks.add(block);
                 }
@@ -47,8 +47,8 @@ public class BlockExplodeFilterType implements FilterType, Listener {
         }
     }
 
-    private boolean contains(Region region, Location location) {
-        return (!inverted && region.contains(location)) || (inverted && !region.contains(location));
+    private boolean contains(Region region, Block block) {
+        return (!inverted && region.contains(block)) || (inverted && !region.contains(block));
     }
 
     public static BlockExplodeFilterType parse(Match match, JsonObject jsonObject) {

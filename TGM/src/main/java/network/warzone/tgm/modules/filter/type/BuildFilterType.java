@@ -42,7 +42,7 @@ public class BuildFilterType implements FilterType, Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent event) {
         for (Region region : regions) {
-            if (contains(region, event.getBlockPlaced().getLocation())) {
+            if (contains(region, event.getBlockPlaced())) {
                 for (MatchTeam matchTeam : teams) {
                     if (matchTeam.containsPlayer(event.getPlayer())) {
                         FilterResult filterResult = evaluator.evaluate(event.getPlayer());
@@ -61,7 +61,7 @@ public class BuildFilterType implements FilterType, Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
         for (Region region : regions) {
-            if (contains(region, event.getBlock().getLocation())) {
+            if (contains(region, event.getBlock())) {
                 for (MatchTeam matchTeam : teams) {
                     if (matchTeam.containsPlayer(event.getPlayer())) {
                         FilterResult filterResult = evaluator.evaluate(event.getPlayer());
@@ -79,7 +79,7 @@ public class BuildFilterType implements FilterType, Listener {
 
     @EventHandler
     public void onPlayerClickItemFram(PlayerInteractEntityEvent event) {
-        if (!event.isCancelled() && event.getRightClicked() != null && event.getRightClicked() instanceof ItemFrame) {
+        if (!event.isCancelled() && event.getRightClicked() instanceof ItemFrame) {
             for (Region region : regions) {
                 if (contains(region, event.getRightClicked().getLocation())) {
                     for (MatchTeam matchTeam : teams) {
@@ -182,6 +182,10 @@ public class BuildFilterType implements FilterType, Listener {
                 }
             }
         }
+    }
+
+    private boolean contains(Region region, Block block) {
+        return (!inverted && region.contains(block)) || (inverted && !region.contains(block));
     }
 
     private boolean contains(Region region, Location location) {

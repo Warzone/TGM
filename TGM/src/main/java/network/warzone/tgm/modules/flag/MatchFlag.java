@@ -141,7 +141,7 @@ public class MatchFlag extends PlayerRedeemable implements Listener {
 
         TGM.registerEvents(this);
 
-        if (bannerType.contains("WALL")) {
+        if (bannerType.contains("WALL")) { // TODO: Adjust this region when switching from block positions to coordinates
             this.protectiveRegion = new CuboidRegion(
                     location.clone().subtract(1, 2, 1),
                     location.clone().add(1, 1, 1)
@@ -159,14 +159,14 @@ public class MatchFlag extends PlayerRedeemable implements Listener {
     // Filters are wack. Do not allow build or break in the base region
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockBreak(BlockBreakEvent event) {
-        if (!protectiveRegion.contains(event.getBlock().getLocation())) return;
+        if (!protectiveRegion.contains(event.getBlock())) return;
         event.getPlayer().sendMessage(ChatColor.RED + "You cannot break near a flag area!");
         event.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (!protectiveRegion.contains(event.getBlock().getLocation())) return;
+        if (!protectiveRegion.contains(event.getBlock())) return;
         event.getPlayer().sendMessage(ChatColor.RED + "You cannot build near a flag area!");
         event.setCancelled(true);
     }

@@ -53,14 +53,14 @@ public class MatchBase implements Listener {
     // Filters are wack. Do not allow build or break in the base region
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockBreak(BlockBreakEvent event) {
-        if (!baseRegion.contains(event.getBlock().getLocation())) return;
+        if (!baseRegion.contains(event.getBlock())) return;
         event.getPlayer().sendMessage(ChatColor.RED + "You cannot break near a capture base!");
         event.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (!baseRegion.contains(event.getBlock().getLocation())) return;
+        if (!baseRegion.contains(event.getBlock())) return;
         event.getPlayer().sendMessage(ChatColor.RED + "You cannot build near a capture base!");
         event.setCancelled(true);
     }

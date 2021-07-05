@@ -16,6 +16,7 @@ import network.warzone.tgm.modules.team.TeamManagerModule;
 import network.warzone.tgm.util.Strings;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -40,7 +41,7 @@ public class BlockPlaceFilterType implements FilterType, Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onBlockPlaceEvent(BlockPlaceEvent event) {
         for (Region region : regions) {
-            if (contains(region, event.getBlockPlaced().getLocation())) {
+            if (contains(region, event.getBlockPlaced())) {
                 for (MatchTeam matchTeam : teams) {
                     if (matchTeam.containsPlayer(event.getPlayer())) {
                         FilterResult filterResult = evaluator.evaluate(event.getPlayer());
@@ -55,8 +56,8 @@ public class BlockPlaceFilterType implements FilterType, Listener {
         }
     }
 
-    private boolean contains(Region region, Location location) {
-        return (!inverted && region.contains(location)) || (inverted && !region.contains(location));
+    private boolean contains(Region region, Block block) {
+        return (!inverted && region.contains(block)) || (inverted && !region.contains(block));
     }
 
     private boolean canPlace(BlockPlaceEvent event, FilterResult filterResult) {

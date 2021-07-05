@@ -64,10 +64,10 @@ public class WoolObjective implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlace(BlockPlaceEvent event) {
         if (event.getBlockPlaced().getType() == block) {
-            if (!completed && podium.contains(event.getBlockPlaced().getLocation()) && owner.containsPlayer(event.getPlayer()))
+            if (!completed && podium.contains(event.getBlockPlaced()) && owner.containsPlayer(event.getPlayer()))
                 event.setCancelled(true);
         } else {
-            if (podium.contains(event.getBlockPlaced().getLocation())) {
+            if (podium.contains(event.getBlockPlaced())) {
                 event.setCancelled(true);
                 event.getPlayer().sendMessage(ChatColor.RED + "You may only place " + ChatColor.YELLOW + ItemUtils.materialToString(block) + ChatColor.RED + " in the podium!");
             }
@@ -80,7 +80,7 @@ public class WoolObjective implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlaceHighest(BlockPlaceEvent event) {
         if (!completed && event.getBlockPlaced().getType() == block) {
-            if (!podium.contains(event.getBlockPlaced().getLocation())) {
+            if (!podium.contains(event.getBlockPlaced())) {
                 return;
             }
             if (!owner.containsPlayer(event.getPlayer())) {

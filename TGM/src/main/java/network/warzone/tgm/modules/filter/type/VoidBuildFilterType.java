@@ -47,7 +47,7 @@ public class VoidBuildFilterType implements FilterType, Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent event) {
         for (Region region : regions) {
-            if (contains(region, event.getBlockPlaced().getLocation())) {
+            if (contains(region, event.getBlockPlaced())) {
                 for (MatchTeam matchTeam : teams) {
                     if (matchTeam.containsPlayer(event.getPlayer())) {
                         FilterResult filterResult = evaluator.evaluate(event.getPlayer());
@@ -63,8 +63,8 @@ public class VoidBuildFilterType implements FilterType, Listener {
         }
     }
 
-    private boolean contains(Region region, Location location) {
-        return (!inverted && region.contains(location)) || (inverted && !region.contains(location));
+    private boolean contains(Region region, Block block) {
+        return (!inverted && region.contains(block)) || (inverted && !region.contains(block));
     }
 
     private boolean isAboveVoid(Block placed) {
